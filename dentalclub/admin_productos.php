@@ -4,17 +4,16 @@ if(!isset($_SESSION['usuario']) || $_SESSION['rol'] != 1){
     header("location: index.php");
 }
 
-$titulo = "Administrar Productos | EON Store";
+$titulo = "Administrar Productos | Dental Club SV";
 include("clases/BaseDatos.php");
-$objBD = new baseDatos("localhost","eonstore","root",""); //"server,bd,usuario,password"
+$objBD = new baseDatos("localhost","dentalclub","root",""); //"server,bd,usuario,password"
 //Si se usa XAMPP cambiar la clave a "", Caso contrario dejar "mysql"
 
 include("recursos/admin_header.php");
 
 //Datos para paginación de tabla
 $limite = 10;
-$registros = $objBD->leer("marca","COUNT(*) as cuenta")[0]['cuenta'];
-$paginas = ceil($registros/$limite);
+$paginas = '';
 ?>
 <!-- Cuerpo de página -->
 <div class="wrapper">
@@ -25,31 +24,7 @@ $paginas = ceil($registros/$limite);
         <div class="column is-10">
             <div id="contenido-resultado"></div>
             <br>
-            <nav class="pagination is-small" role="navigation" aria-label="paginacion">
-                <ul class="pagination-list" id="paginacion">
-                    <?php
-                if(!empty($paginas)){
-                    for($i=1;$i<=$paginas;$i++){
-                        if($i == 1){
-                            ?>
-                    <li>
-                        <a href="clases/paginacion.php?tabla=producto&pagina=<?php echo $i;?>"
-                            class="pagination-link is-current" id="<?php echo $i ?>"><?php echo $i;?></a>
-                    </li>
-                    <?php
-                        }else{
-                            ?>
-                    <li>
-                        <a href="clases/paginacion.php?tabla=producto&pagina=<?php echo $i;?>"
-                            class="pagination-link" id="<?php echo $i ?>"><?php echo $i;?></a>
-                    </li>
-                    <?php
-                        }
-                    }
-                }
-            ?>
-                </ul>
-            </nav>
+
             <hr>
             <h1 class="title has-text-centered is-4" id="titulo">Agregar un Producto</h1>
             <div class="columns">
@@ -65,45 +40,6 @@ $paginas = ceil($registros/$limite);
                                         <input class="input" type="text" id="nombre" name="nombre">
                                     </div>
                                 </div>
-                                <div class="field">
-                                    <label class="label">Marca</label>
-                                    <div class="select">
-                                        <select class="input" name="marca" id="marca">
-                                            <option value="">-- Seleccione Una --</option>
-                                            <?php
-                                            $marcas = $objBD->leer("marca","*");
-                                            foreach($marcas as $m){
-                                                extract($m);
-                                                echo "
-                                                    <option value='$id_marca'>$nombre</option>
-                                                ";
-                                            }
-                                            ?>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="field">
-                                    <label class="label">Modelo</label>
-                                    <div class="control">
-                                        <input class="input" type="text" id="modelo" name="modelo">
-                                    </div>
-                                </div>
-                                <div class="field">
-                                    <label class="label">Categoría</label>
-                                    <div class="select">
-                                        <select class="input" name="categoria" id="categoria">
-                                            <option value="">-- Seleccione Una --</option>
-                                            <?php
-                                            $cats = $objBD->leer("categoria","*");
-                                            foreach($cats as $c){
-                                                extract($c);
-                                                echo "
-                                                    <option value='$id_cat'>$nombre</option>
-                                                ";
-                                            }
-                                            ?>
-                                        </select>
-                                    </div>
                                 </div>
                                 <div class="field">
                                     <label class="label">Descripcion</label>
@@ -203,9 +139,6 @@ include("recursos/footer.php");
 
         id_prod = $("#id_prod").val();
         nombre = $("#nombre").val();
-        marca = $("#marca").val();
-        modelo = $("#modelo").val();
-        categoria = $("#categoria").val();
         descripcion = $("#descripcion").val();
         precio = $("#precio").val();
         stock = $("#stock").val();
@@ -216,22 +149,13 @@ include("recursos/footer.php");
         if(descripcion)
             validacion++
         
-        if(marca)
-            validacion++
-        
-        if(categoria)
-            validacion++
-        
-        if(modelo)
-            validacion++
-        
         if(precio)
             validacion++
 
         if(stock)
             validacion++
 
-        if(validacion == 7){
+        if(validacion == 4){
             if($("#imagen").get(0).files.length === 0){
                 $.ajax({
                     url: "clases/ajax.php?solicitud=upd_no_img",
@@ -242,9 +166,6 @@ include("recursos/footer.php");
                             'id_prod'     : id_prod,
                             'nombre'      : nombre,
                             'descripcion' : descripcion,
-                            'id_marca'       : marca,
-                            'id_cat'   : categoria,
-                            'modelo'      : modelo,
                             'precio'      : precio,
                             'stock'       : stock
                         }
@@ -271,9 +192,6 @@ include("recursos/footer.php");
                 fd.append("imagen",imagen);
                 fd.append("nombre",nombre);
                 fd.append("descripcion",descripcion);
-                fd.append("id_marca",marca);
-                fd.append("id_cat",categoria);
-                fd.append("modelo",modelo);
                 fd.append("precio",precio);
                 fd.append("stock",stock);
                 fd.append("tabla","producto");
@@ -314,9 +232,6 @@ include("recursos/footer.php");
         validacion = 0;
 
         nombre = $("#nombre").val()
-        marca = $("#marca").val();
-        modelo = $("#modelo").val();
-        categoria = $("#categoria").val();
         descripcion = $("#descripcion").val()
         precio = $("#precio").val();
         stock = $("#precio").val();
@@ -326,16 +241,7 @@ include("recursos/footer.php");
 
         if(descripcion)
             validacion++;
-        
-        if(marca)
-            validacion++;
-        
-        if(categoria)
-            validacion++;
-        
-        if(modelo)
-            validacion++;
-        
+
         if(precio)
             validacion++;
 
@@ -345,15 +251,12 @@ include("recursos/footer.php");
         if($("#imagen").get(0).files.length !== 0)
             validacion++;
 
-        if(validacion == 8){
+        if(validacion == 3){
             fd = new FormData();
             imagen = $("#imagen")[0].files[0];
             fd.append("imagen",imagen);
             fd.append("nombre",nombre);
             fd.append("descripcion",descripcion);
-            fd.append("id_marca",marca);
-            fd.append("id_cat",categoria);
-            fd.append("modelo",modelo);
             fd.append("precio",precio);
             fd.append("stock",stock);
             fd.append("tabla","producto");
@@ -405,9 +308,6 @@ include("recursos/footer.php");
                 $("#id_prod").val(obj.id_prod);
                 $("#nombre").val(obj.nombre);
                 $("#descripcion").val(obj.descripcion);
-                $("#marca").val(obj.id_marca);
-                $("#modelo").val(obj.modelo);
-                $("#categoria").val(obj.id_cat);
                 $("#precio").val(obj.precio);
                 $("#stock").val(obj.stock);
                 $("#titulo").html("Editar Producto");

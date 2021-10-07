@@ -4,9 +4,9 @@ session_start();
 if(isset($_SESSION["usuario"])){
     header("location: index.php");
 }
-$titulo = "Iniciar Sesión | EON Store";
+$titulo = "Iniciar Sesión | Dental Club SV";
 include("clases/BaseDatos.php");
-$objBD = new baseDatos("localhost","eonstore","root",""); //"server,bd,usuario,password"
+$objBD = new baseDatos("localhost","dentalclub","root",""); //"server,bd,usuario,password"
 //Si se usa XAMPP cambiar la clave a "", Caso contrario dejar "mysql"
 
 include("recursos/header.php");

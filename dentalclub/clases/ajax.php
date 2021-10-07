@@ -6,7 +6,7 @@ class AjaxRequest{
     public $resultado;
 
     public function __construct(){
-        $this->objBD = new baseDatos("localhost","eonstore","root","");
+        $this->objBD = new baseDatos("localhost","dentalclub","root","");
     }
 
     public function procesar_solicitud($request,$datos = null){

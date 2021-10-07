@@ -17,10 +17,10 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `eonstore`
+-- Base de datos: `dentalclub`
 --
-CREATE DATABASE IF NOT EXISTS `eonstore` DEFAULT CHARACTER SET utf8 COLLATE utf8_bin;
-USE `eonstore`;
+CREATE DATABASE IF NOT EXISTS `dentalclub` DEFAULT CHARACTER SET utf8 COLLATE utf8_bin;
+USE `dentalclub`;
 
 -- --------------------------------------------------------
 

@@ -5,7 +5,7 @@ $titulo = "Productos | EON Store";
 include("clases/BaseDatos.php");
 include("clases/Carrito.php");
 
-$objBD = new baseDatos("localhost","eonstore","root","");
+$objBD = new baseDatos("localhost","dentalclub","root","");
 //Si se usa XAMPP cambiar la clave a "", Caso contrario dejar "mysql"
 
 //instancia del Carrito

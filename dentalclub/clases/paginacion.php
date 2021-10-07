@@ -1,6 +1,6 @@
 <?php
 include("BaseDatos.php");
-$objBD = new baseDatos("localhost","eonstore","root",""); //"server,bd,usuario,password"
+$objBD = new baseDatos("localhost","dentalclub","root",""); //"server,bd,usuario,password"
 //Si se usa XAMPP cambiar la clave a "", Caso contrario dejar "mysql"
 
 $limite = 10;
@@ -153,15 +153,15 @@ switch($tabla){
                         }
                         foreach($resultado as $r){
                             extract($r);
-                            $nom_marca = ($objBD->leer("marca","nombre",array("id_marca" => $id_marca)))[0]["nombre"];
-                            $nom_cat = ($objBD->leer("categoria","nombre",array("id_cat" => $id_cat)))[0]["nombre"];
+                            //$nom_marca = ($objBD->leer("marca","nombre",array("id_marca" => $id_marca)))[0]["nombre"];
+                            //$nom_cat = ($objBD->leer("categoria","nombre",array("id_cat" => $id_cat)))[0]["nombre"];
                             echo "
                                 <tr>
                                     <td>$id_prod</td>
                                     <td>$nombre</td>
-                                    <td>$nom_marca</td>
+                                    <td></td>
                                     <td>$modelo</td>
-                                    <td>$nom_cat</td>
+                                    <td></td>
                                     <td>$descripcion</td>
                                     <td>$".number_format($precio,2)."</td>
                                     <td>$stock</td>

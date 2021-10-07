@@ -5,7 +5,7 @@ $titulo = "Carrito | Dental Club SV";
 include("clases/BaseDatos.php");
 include("clases/Carrito.php");
 date_default_timezone_set('America/El_Salvador');
-$objBD = new baseDatos("localhost","eonstore","root","");
+$objBD = new baseDatos("localhost","dentalclub","root","");
 //Si se usa XAMPP cambiar la clave a "", Caso contrario dejar "mysql"
 if(!isset($_SESSION["usuario"])){
     echo "

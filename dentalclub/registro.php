@@ -4,16 +4,16 @@ session_start();
 if(isset($_SESSION["usuario"])){
     header("location: index.php");
 }
-$titulo = "Regístrate | EON Store";
+$titulo = "Regístrate | Dental Club SV";
 include("clases/BaseDatos.php");
-$objBD = new baseDatos("localhost","eonstore","root","");
+$objBD = new baseDatos("localhost","dentalclub","root","");
 //Si se usa XAMPP cambiar la clave a "", Caso contrario dejar "mysql"
 
 include("recursos/header.php");
 ?>
 <!-- Cuerpo de página -->
 <div class="wrapper">
-    <h1 class="title has-text-centered">¡Forma parte de EON Store!</h1>
+    <h1 class="title has-text-centered">¡Forma parte de Dental Club SV!</h1>
     <hr>
     <div class="columns">
         <div class="column is-3"></div>

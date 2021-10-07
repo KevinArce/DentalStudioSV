@@ -28,17 +28,8 @@
                 <a class="navbar-item" href="admin_panel.php">
                     Inicio
                 </a>
-                <a class="navbar-item" href="admin_categorias.php">
-                    Categorías
-                </a>
-                <a class="navbar-item" href="admin_marcas.php">
-                    Marcas
-                </a>
                 <a class="navbar-item" href="admin_productos.php">
                     Productos
-                </a>
-                <a class="navbar-item" href="admin_pedidos.php">
-                    Pedidos
                 </a>
             </div>
             <!-- Menú dependiente de la existencia de sesión -->

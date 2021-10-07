@@ -28,37 +28,6 @@
                 <a class="navbar-item" href="index.php">
                     Inicio
                 </a>
-                <div class="navbar-item has-dropdown is-hoverable">
-                    <a class="navbar-link">
-                    Categorías
-                    </a>
-                    <div class="navbar-dropdown">
-                        <?php
-                        $categorias = $objBD->leer("categoria","nombre,id_cat");
-                        foreach($categorias as $c){
-                            extract($c);
-                            echo '
-                                <a class="navbar-item" href="productos.php?cat='.$id_cat.'">'.$nombre.'</a>    
-                            ';
-                        }
-                        ?>
-                    </div>
-                </div>
-                <div class="navbar-item has-dropdown is-hoverable">
-                    <a class="navbar-link">
-                    Marcas
-                    </a>
-                    <div class="navbar-dropdown">
-                        <?php
-                        $marcas = $objBD->leer("marca","nombre,id_marca");
-                        foreach($marcas as $m){
-                            extract($m);
-                            echo '
-                                <a class="navbar-item" href="productos.php?marca='.$id_marca.'">'.$nombre.'</a>    
-                            ';
-                        }
-                        ?>
-                    </div>
                 </div>
             </div>
             <!-- Menú dependiente de la existencia de sesión -->
